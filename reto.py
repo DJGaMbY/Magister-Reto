@@ -3,11 +3,16 @@ from flask_sqlalchemy import SQLAlchemy
 from bs4 import BeautifulSoup
 import requests
 from geopy.geocoders import Nominatim
+from requests_html import HTMLSession
+from selenium import webdriver
+from selenium.webdriver import Firefox
+import urllib.request
+import time
+from selenium.webdriver.firefox.options import Options
+options = Options()
+options.headless = True
 
-
-source = requests.get('https://www.scholarum.es/es/home').text
-soup = BeautifulSoup(source, 'html.parser')
-
+driver = webdriver.Firefox(firefox_options=options, executable_path = 'C:/Users/Javier/Downloads/geckodriver.exe')
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/colegios'
@@ -67,10 +72,12 @@ def index():
 
 @app.route('/scraper', methods=['GET', 'POST'])
 def scraper():
+    
     current = Queries.query.first()
     centro = current.centro
     ubicacion = current.ubicacion
     distancia = str(current.distancia)
+
 
     geolocator = Nominatim(user_agent="find_coords")
     location = geolocator.geocode("alcorcon")
@@ -79,12 +86,31 @@ def scraper():
     latitud = str(location.latitude)
     longitud = str(location.longitude)
     web = 'https://www.scholarum.es/es/buscador-centros/'+ localidad+'/'+ centro + '%7C'+ centro +'/' + latitud + '/' + longitud + '/' + distancia
+
+
+
+
+    # get web page
+    driver.get(web)
+    # execute script to scroll down the page
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
+    # sleep for 30s
+    time.sleep(5)
+    # driver.quit()
+
+    body = driver.execute_script("return document.body")
+    source = body.get_attribute('innerHTML') 
+
+
+
     print(web)
-    source = requests.get(web).text
+    #source = requests.get(web).text
     soup = BeautifulSoup(source, 'html.parser')
-    span = soup.find_all("div", {"class": "registro_colegio_buscador"})
-    print(soup)
-    print(span)
+    span = soup.find_all("a", {"class": "titulo_colegios_enlace async"})
+    for tag in span:
+        print(tag.text.strip())
+    #print(soup)
+    #print(span)
     return render_template('index.html')
 
 
