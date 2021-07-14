@@ -1,5 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+from bs4 import BeautifulSoup
+import requests
+from geopy.geocoders import Nominatim
+
+
+source = requests.get('https://www.scholarum.es/es/home').text
+soup = BeautifulSoup(source, 'html.parser')
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/colegios'
@@ -55,6 +63,30 @@ def index():
         return render_template('index.html')
 
     return render_template('index.html')
+
+
+@app.route('/scraper', methods=['GET', 'POST'])
+def scraper():
+    current = Queries.query.first()
+    centro = current.centro
+    ubicacion = current.ubicacion
+    distancia = str(current.distancia)
+
+    geolocator = Nominatim(user_agent="find_coords")
+    location = geolocator.geocode("alcorcon")
+    dir = location.address
+    localidad = dir.split(", ")[0]
+    latitud = str(location.latitude)
+    longitud = str(location.longitude)
+    web = 'https://www.scholarum.es/es/buscador-centros/'+ localidad+'/'+ centro + '%7C'+ centro +'/' + latitud + '/' + longitud + '/' + distancia
+    print(web)
+    source = requests.get(web).text
+    soup = BeautifulSoup(source, 'html.parser')
+    span = soup.find_all("div", {"class": "registro_colegio_buscador"})
+    print(soup)
+    print(span)
+    return render_template('index.html')
+
 
 
 
