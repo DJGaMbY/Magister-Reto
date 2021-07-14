@@ -1,13 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from bs4 import BeautifulSoup
-import requests
 from geopy.geocoders import Nominatim
-from requests_html import HTMLSession
 from selenium import webdriver
 from selenium.webdriver import Firefox
-import urllib.request
 import time
+import requests
+
 from selenium.webdriver.firefox.options import Options
 options = Options()
 options.headless = True
@@ -88,8 +87,6 @@ def scraper():
     web = 'https://www.scholarum.es/es/buscador-centros/'+ localidad+'/'+ centro + '%7C'+ centro +'/' + latitud + '/' + longitud + '/' + distancia
 
 
-
-
     # get web page
     driver.get(web)
     # execute script to scroll down the page
@@ -101,16 +98,28 @@ def scraper():
     body = driver.execute_script("return document.body")
     source = body.get_attribute('innerHTML') 
 
-
-
-    print(web)
     #source = requests.get(web).text
     soup = BeautifulSoup(source, 'html.parser')
-    span = soup.find_all("a", {"class": "titulo_colegios_enlace async"})
-    for tag in span:
-        print(tag.text.strip())
-    #print(soup)
-    #print(span)
+    a = soup.find_all("div", {"class": "contenido_registro_colegio_descripcion"})
+    for tag in a:
+        centro = tag.find("a", {"class": "titulo_colegios_enlace async"}).text.strip()
+        link = tag.find("a", {"class": "titulo_colegios_enlace async"})['href']
+        calle = tag.find_all("p")[0].text
+        localidad = tag.find_all("p")[1].text
+        details = requests.get('https://www.scholarum.es'+ link).text
+        soup = BeautifulSoup(details, 'html.parser')
+        span = soup.find_all("span", {"class": "txt_nor"})
+        for data in span:
+            if "Enseñanzas" in data.text:
+                cursos = data.text.split(": ")[1]
+            if "Tipo" in data.text:
+                tipo = data.text.split(": ")[1]
+            if data.text.startswith("9"):
+                telefono = data.text.split("- ")[0]
+
+            link_colegio = soup.find_all("a", {"class": "enlace_web"})[0]['href']          
+
+
     return render_template('index.html')
 
 
