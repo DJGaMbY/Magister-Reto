@@ -19,32 +19,22 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = 'reto'
 
 
-        
-        
-        
-        
-        
-        
-        
-        
-         
-
 db = SQLAlchemy(app)
 
-class Colegio(db.Model):
+class Schools(db.Model):
     nombre = db.Column(db.Text(), primary_key=True, nullable=False)
-    calle = db.Column(db.Text(), primary_key=True, nullable=False)
-    codigo_postal = db.Column(db.Integer, nullable=False)
+    calle = db.Column(db.Text(), nullable=False)
+    codigo_postal = db.Column(db.Integer, primary_key=True, nullable=False)
     municipio = db.Column(db.Text(), nullable=False)
     provincia = db.Column(db.Text(), nullable=False)
     tipo = db.Column(db.Text(), nullable=False)
     cursos = db.Column(db.Text(), nullable=False)
-    telefono = db.Column(db.Integer, nullable=False)
+    telefono = db.Column(db.Text(), nullable=False)
     link_web = db.Column(db.Text(), nullable=False)
 
     def __init__(self, nombre, calle, codigo_postal, municipio, provincia, tipo, cursos, telefono, link_web):
         self.nombre = nombre
-        self.direccion = calle
+        self.calle = calle
         self.codigo_postal = codigo_postal
         self.municipio = municipio
         self.provincia = provincia
@@ -73,6 +63,9 @@ class Queries(db.Model):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+
+    queries = Queries.query.all()
+
     if request.method == 'POST':
         details = request.form
         centro = details['centro']
@@ -81,11 +74,10 @@ def index():
         newQuery = Queries(centro, ubicacion, distancia)
         db.session.add(newQuery)
         db.session.commit()
-        db.session.close()
 
-        return render_template('index.html')
+        return render_template('index.html', queries=queries)
 
-    return render_template('index.html')
+    return render_template('index.html', queries=queries)
 
 
 @app.route('/scraper', methods=['GET', 'POST'])
@@ -95,7 +87,7 @@ def scraper():
     centro = current.centro
     ubicacion = current.ubicacion
     distancia = str(current.distancia)
-
+    resultado = []
 
     geolocator = Nominatim(user_agent="find_coords")
     location = geolocator.geocode(ubicacion)
@@ -104,7 +96,6 @@ def scraper():
     latitud = str(location.latitude)
     longitud = str(location.longitude)
     web = 'https://www.scholarum.es/es/buscador-centros/' + localidad + '/' + centro + '%7C' + centro + '/' + latitud + '/' + longitud + '/' + distancia
-
 
     # get web page
     driver.get(web)
@@ -124,9 +115,8 @@ def scraper():
         nombre = tag.find("a", {"class": "titulo_colegios_enlace async"}).text.strip()
         link = tag.find("a", {"class": "titulo_colegios_enlace async"})['href']
         calle = tag.find_all("p")[0].text
-        cp = calle.split("CP ")[1]
+        cp = int(calle.split("CP ")[1])
         calle_split = calle.split(", ")[0]
-
         ciudad = tag.find_all("p")[1].text
         municipio = ciudad.split(", ")[0]
         provincia = ciudad.split(", ")[1]
@@ -142,23 +132,22 @@ def scraper():
             if data.text.startswith("9"):
                 telefono = data.text.split("- ")[0]
 
-            link_colegio = soup.find_all("a", {"class": "enlace_web"})[0]['href']    
+        link_colegio = soup.find_all("a", {"class": "enlace_web"})[0]['href']
 
-        print(nombre)
-        print(calle_split)
-        print(cp)
-        print(municipio)
-        print(provincia_split)
-        print(cursos)
-        print(tipo)
-        print(telefono)
-        print(link_colegio)      
+        colegio = Schools(nombre, calle_split, cp, municipio, provincia_split, tipo, cursos, telefono, link_colegio)
+        #colegio.calle = calle_split
+        existente = Schools.query.filter_by(nombre=nombre, codigo_postal=cp)
+        if existente.count() == 0:
+            db.session.add(colegio)
+            db.session.commit()
+        resultado.append(colegio)
+        #for res in resultado:
+            #res.calle = calle_split 
         
+    db.session.delete(current)
+    db.session.commit()
 
-
-    return render_template('index.html')
-
-
+    return render_template('resultados.html', colegios=resultado)
 
 
 if __name__ == '__main__':

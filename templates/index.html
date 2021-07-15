@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 
+    <head>
+        <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+        </head>
+
   <body>
       <form action="" method="POST">
           <h5>Insertar query</h5>
@@ -17,7 +37,27 @@
               <button type="submit">Submit</button>
           </div>
       </form>
-      <a href="{{ url_for('scraper') }}">Prueba scraper</a>
+      <div>
+        {% if queries|length %}
+        <table>
+            <tr>
+              <th>Centro</th>
+              <th>Ubicación</th>
+              <th>Distancia</th>
+            </tr>
+        {% for query in queries %}   
+            <tr>
+              <td>{{query.centro}}</td>
+              <td>{{query.ubicacion}}</td>
+              <td>{{query.distancia}}</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        </table>
+      </div>
+      {% if queries|length %}
+      <a href="{{ url_for('scraper') }}">Scraper</a>
+      {% endif %}
   </body>
 
 </html>

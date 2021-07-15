@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+    </head>
+
+  <body>
+      <div>
+        {% if colegios|length %}
+        <table>
+            <tr>
+              <th>Nombre del centro</th>
+              <th>Dirección</th>
+              <th>Código Postal</th>
+              <th>Municipio</th>
+              <th>Provincia</th>
+              <th>Cursos impartidos</th>
+              <th>Tipo de centro</th>
+              <th>Teléfono</th>
+              <th>Web</th>
+            </tr>
+        {% for colegio in colegios %}   
+            <tr>
+              <td>{{colegio.nombre}}</td>
+              <td>{{colegio.calle}}</td>
+              <td>{{colegio.codigo_postal}}</td>
+              <td>{{colegio.municipio}}</td>
+              <td>{{colegio.provincia}}</td>
+              <td>{{colegio.cursos}}</td>
+              <td>{{colegio.tipo}}</td>
+              <td>{{colegio.telefono}}</td>
+              <td>{{colegio.link_web}}</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        </table>
+      </div>
+      <a href="{{ url_for('index') }}">Volver</a>
+  </body>
+
+</html>
