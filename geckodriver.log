@@ -18,7 +18,9 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofilesVTDeS"
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+rs\\Javier\\AppData\\Local\\Temp\\rust_mozprofilesVTDeS"
 *** You are running in headless mode.
 1626274845001	Marionette	INFO	Marionette enabled
 [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
@@ -37,8 +39,8 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
+Exiting due to channel error.
+.error: services.settings: 
   main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
 console.error: services.settings: 
   main/doh-config local data was corrupted
@@ -108,8 +110,8 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
+Exiting due to channel error.
+.error: services.settings: 
   main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
 console.error: services.settings: 
   main/doh-config local data was corrupted
@@ -336,22 +338,9 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
-console.error: services.settings: 
-  main/doh-config local data was corrupted
-console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
-console.error: services.settings: 
-  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
-console.error: services.settings: 
-  main/doh-providers local data was corrupted
-console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
-console.log: WebExtensions: reset-default-search: starting.
-console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+failed  InvalidSignatureError: Invalid content signature (main/doh-config)
 console.error: services.settings: 
   main/doh-config local data was corrupted
 console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
@@ -375,22 +364,9 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
-console.error: services.settings: 
-  main/doh-config local data was corrupted
-console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
-console.error: services.settings: 
-  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
-console.error: services.settings: 
-  main/doh-providers local data was corrupted
-console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
-console.log: WebExtensions: reset-default-search: starting.
-console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+failed  InvalidSignatureError: Invalid content signature (main/doh-config)
 console.error: services.settings: 
   main/doh-config local data was corrupted
 console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
@@ -401,18 +377,66 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileIihmFu"
+Exiting due to channel error.
+Exiting due to channel error.
+main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+p\\rust_mozprofileIihmFu"
 *** You are running in headless mode.
 1626279954654	Marionette	INFO	Marionette enabled
 [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileIihmFu\\search.json.mozlz4", (void 0)))
 1626279955397	Marionette	INFO	Listening on port 58725
 1626279955461	Marionette	WARN	TLS certificate errors will be ignored for this session
-1626280096920	geckodriver	INFO	Listening on 127.0.0.1:51384
-1626280099943	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofilenDTCF4"
-*** You are running in headless mode.
-1626280100167	Marionette	INFO	Marionette enabled
-[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofilenDTCF4\\search.json.mozlz4", (void 0)))
-1626280100939	Marionette	INFO	Listening on port 55138
-1626280100959	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: services.settings: 
+  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+nored for this session
+console.error: services.settings: 
+  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+Exiting due to channel error.

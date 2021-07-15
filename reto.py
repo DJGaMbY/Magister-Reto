@@ -18,21 +18,40 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhos
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = 'reto'
 
+
+        
+        
+        
+        
+        
+        
+        
+        
+         
+
 db = SQLAlchemy(app)
 
 class Colegio(db.Model):
     nombre = db.Column(db.Text(), primary_key=True, nullable=False)
-    direccion = db.Column(db.Text(), primary_key=True, nullable=False)
+    calle = db.Column(db.Text(), primary_key=True, nullable=False)
+    codigo_postal = db.Column(db.Integer, nullable=False)
+    municipio = db.Column(db.Text(), nullable=False)
+    provincia = db.Column(db.Text(), nullable=False)
     tipo = db.Column(db.Text(), nullable=False)
     cursos = db.Column(db.Text(), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
+    link_web = db.Column(db.Text(), nullable=False)
 
-    def __init__(self, nombre, direccion, tipo, cursos, telefono):
+    def __init__(self, nombre, calle, codigo_postal, municipio, provincia, tipo, cursos, telefono, link_web):
         self.nombre = nombre
-        self.direccion = direccion
+        self.direccion = calle
+        self.codigo_postal = codigo_postal
+        self.municipio = municipio
+        self.provincia = provincia
         self.tipo = tipo
         self.cursos = cursos
         self.telefono = telefono
+        self.link_web = link_web
 
     def __repr__(self):
         return '<Colegio %r>' % self.nombre
@@ -79,19 +98,19 @@ def scraper():
 
 
     geolocator = Nominatim(user_agent="find_coords")
-    location = geolocator.geocode("alcorcon")
+    location = geolocator.geocode(ubicacion)
     dir = location.address
     localidad = dir.split(", ")[0]
     latitud = str(location.latitude)
     longitud = str(location.longitude)
-    web = 'https://www.scholarum.es/es/buscador-centros/'+ localidad+'/'+ centro + '%7C'+ centro +'/' + latitud + '/' + longitud + '/' + distancia
+    web = 'https://www.scholarum.es/es/buscador-centros/' + localidad + '/' + centro + '%7C' + centro + '/' + latitud + '/' + longitud + '/' + distancia
 
 
     # get web page
     driver.get(web)
     # execute script to scroll down the page
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-    # sleep for 30s
+    # sleep for 5s
     time.sleep(5)
     # driver.quit()
 
@@ -102,10 +121,16 @@ def scraper():
     soup = BeautifulSoup(source, 'html.parser')
     a = soup.find_all("div", {"class": "contenido_registro_colegio_descripcion"})
     for tag in a:
-        centro = tag.find("a", {"class": "titulo_colegios_enlace async"}).text.strip()
+        nombre = tag.find("a", {"class": "titulo_colegios_enlace async"}).text.strip()
         link = tag.find("a", {"class": "titulo_colegios_enlace async"})['href']
         calle = tag.find_all("p")[0].text
-        localidad = tag.find_all("p")[1].text
+        cp = calle.split("CP ")[1]
+        calle_split = calle.split(", ")[0]
+
+        ciudad = tag.find_all("p")[1].text
+        municipio = ciudad.split(", ")[0]
+        provincia = ciudad.split(", ")[1]
+        provincia_split = provincia.lstrip("(").rstrip(")")
         details = requests.get('https://www.scholarum.es'+ link).text
         soup = BeautifulSoup(details, 'html.parser')
         span = soup.find_all("span", {"class": "txt_nor"})
@@ -117,7 +142,18 @@ def scraper():
             if data.text.startswith("9"):
                 telefono = data.text.split("- ")[0]
 
-            link_colegio = soup.find_all("a", {"class": "enlace_web"})[0]['href']          
+            link_colegio = soup.find_all("a", {"class": "enlace_web"})[0]['href']    
+
+        print(nombre)
+        print(calle_split)
+        print(cp)
+        print(municipio)
+        print(provincia_split)
+        print(cursos)
+        print(tipo)
+        print(telefono)
+        print(link_colegio)      
+        
 
 
     return render_template('index.html')
