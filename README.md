@@ -40,4 +40,5 @@ A continuación se crea la base de datos. El usuario utilizado para la realizaci
 ## Funcionamiento
 Para la realización de la búsqueda de Web Scraping, primero se ha comprobado el funcionamiento de la página web. Al realizar una búsqueda, el formato de las direcciones URL era la siguiente:
 - https://www.scholarum.es/es/buscador-centros/"PROVINCIA"/"CENTRO"%7C"CENTRO"/"LATITUD"/"LONGITUD"/"DISTANCIA"
+
 Por ello, a través del módulo geopy es posible obtener la latitud, longitud y la dirección exacta, incluyendo la provincia del string escrito en el formulario. A través del formulario se almacenan las queries en la base de datos. En caso de que no haya ninguna query, no será posible ejecutar la funcionalidad de web scraping, ya que no aparecerá el botón. Cuando existen queries pendientes, al pulsar sobre el scraper, se ejecuta la primera query. Tras unos segundos de recopilación de datos, aprovechando los módulos de BeautifulSoup y Selenium se muestran por pantalla los resultados y se almacenan en la tabla "schools".
