@@ -9,19 +9,19 @@ import requests
 
 from selenium.webdriver.firefox.options import Options
 options = Options()
-options.headless = True
+options.headless = True #esto evita que se abra una pestaña en el navegador al realizar web scraping dinámico
 
-driver = webdriver.Firefox(firefox_options=options, executable_path = 'C:/Users/Javier/Downloads/geckodriver.exe')
+driver = webdriver.Firefox(firefox_options=options, executable_path = 'C:/Users/Javier/Downloads/geckodriver.exe') #El path debe ser cambiado por la ubicación de geckodriver.exe
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/colegios'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/colegios' #configuración BBDD
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = 'reto'
 
 
 db = SQLAlchemy(app)
 
-class Schools(db.Model):
+class Schools(db.Model): #Tabla colegios
     nombre = db.Column(db.Text(), primary_key=True, nullable=False)
     calle = db.Column(db.Text(), nullable=False)
     codigo_postal = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -46,7 +46,7 @@ class Schools(db.Model):
     def __repr__(self):
         return '<Colegio %r>' % self.nombre
 
-class Queries(db.Model):
+class Queries(db.Model): #Tabla queries
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     centro = db.Column(db.Text())
     ubicacion = db.Column(db.Text(), nullable=False)
@@ -64,7 +64,7 @@ class Queries(db.Model):
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
-    if request.method == 'POST':
+    if request.method == 'POST': #Obtención de datos del formulario
         details = request.form
         centro = details['centro']
         ubicacion = details['ubicacion']
@@ -77,7 +77,7 @@ def index():
 
         return render_template('index.html', queries=queries)
 
-    queries = Queries.query.all()
+    queries = Queries.query.all() #Mostrar las queries pendientes en HTML
 
     return render_template('index.html', queries=queries)
 
@@ -85,33 +85,28 @@ def index():
 @app.route('/scraper', methods=['GET', 'POST'])
 def scraper():
     
-    current = Queries.query.first()
+    current = Queries.query.first() #Obtención de la primera query
     centro = current.centro
     ubicacion = current.ubicacion
     distancia = str(current.distancia)
     resultado = []
 
-    geolocator = Nominatim(user_agent="find_coords")
+    geolocator = Nominatim(user_agent="find_coords") #Obtención de coordenadas a raíz de la ubicación
     location = geolocator.geocode(ubicacion)
     dir = location.address
     localidad = dir.split(", ")[0]
     latitud = str(location.latitude)
     longitud = str(location.longitude)
-    web = 'https://www.scholarum.es/es/buscador-centros/' + localidad + '/' + centro + '%7C' + centro + '/' + latitud + '/' + longitud + '/' + distancia
+    web = 'https://www.scholarum.es/es/buscador-centros/' + localidad + '/' + centro + '%7C' + centro + '/' + latitud + '/' + longitud + '/' + distancia #Web a scrapear
 
-    # get web page
-    driver.get(web)
-    # execute script to scroll down the page
+    driver.get(web) #Obtención de web dinámica con JavaScript
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-    # sleep for 5s
-    time.sleep(5)
-    # driver.quit()
+    time.sleep(5) #Espera 5 segundos a obtener todos los datos de la web
 
     body = driver.execute_script("return document.body")
     source = body.get_attribute('innerHTML') 
 
-    #source = requests.get(web).text
-    soup = BeautifulSoup(source, 'html.parser')
+    soup = BeautifulSoup(source, 'html.parser') #Obtención de datos de colegios
     a = soup.find_all("div", {"class": "contenido_registro_colegio_descripcion"})
     for tag in a:
         nombre = tag.find("a", {"class": "titulo_colegios_enlace async"}).text.strip()
@@ -142,15 +137,12 @@ def scraper():
         else:
             link_web = None
 
-        colegio = Schools(nombre, calle_split, cp, municipio, provincia_split, tipo, cursos, tlf_split, link_web)
-        #colegio.calle = calle_split
+        colegio = Schools(nombre, calle_split, cp, municipio, provincia_split, tipo, cursos, tlf_split, link_web) #Crear nuevo colegio y subirlo a BBDD
         existente = Schools.query.filter_by(nombre=nombre, codigo_postal=cp)
         if existente.count() == 0:
             db.session.add(colegio)
             db.session.commit()
         resultado.append(colegio)
-        #for res in resultado:
-            #res.calle = calle_split 
         
     db.session.delete(current)
     db.session.commit()
