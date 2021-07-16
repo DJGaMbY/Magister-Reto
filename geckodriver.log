@@ -1068,4 +1068,78 @@ console.warn: services.settings: main/doh-providers Signature verified failed. R
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
 Exiting due to channel error.
-[GFX1-]: Receive
+[GFX1-]: Receive1626443013047	geckodriver	INFO	Listening on 127.0.0.1:58216
+1626443016071	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileheGuRv"
+*** You are running in headless mode.
+1626443016681	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileheGuRv\\search.json.mozlz4", (void 0)))
+1626443017763	Marionette	INFO	Listening on port 62754
+1626443018126	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+nored for this session
+console.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+Exiting due to channel error.
+1626443186931	Marionette	INFO	Listening on port 51299
+1626443186959	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+[GFX1-]: Receive IPC cld 0)))
+1626443263290	Marionette	INFO	Listening on port 51012
+1626443263321	Marionette	WARN	TLS certificate errors will be ignored for this session
+1626443298985	Marionette	INFO	Stopped listening on port 51012
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1626443660451	geckodriver	INFO	Listening on 127.0.0.1:64162
+1626443663481	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileFz1l8I"
+*** You are running in headless mode.
+1626443663760	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileFz1l8I\\search.json.mozlz4", (void 0)))
+1626443664483	Marionette	INFO	Listening on port 64170
+1626443664517	Marionette	WARN	TLS certificate errors will be ignored for this session
+1626443780717	Marionette	INFO	Stopped listening on port 64170
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1626443884564	geckodriver	INFO	Listening on 127.0.0.1:51209
+1626443887579	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileLAU4ap"
+*** You are running in headless mode.
+1626443887806	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileLAU4ap\\search.json.mozlz4", (void 0)))
+1626443888563	Marionette	INFO	Listening on port 51217
+1626443888609	Marionette	WARN	TLS certificate errors will be ignored for this session
+1626443901813	Marionette	INFO	Stopped listening on port 51217
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+

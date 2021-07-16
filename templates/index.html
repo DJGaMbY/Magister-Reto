@@ -3,6 +3,21 @@
 
     <head>
         <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
         table {
           font-family: arial, sans-serif;
           border-collapse: collapse;
@@ -18,12 +33,13 @@
         tr:nth-child(even) {
           background-color: #dddddd;
         }
+
         </style>
         </head>
 
   <body>
       <form action="" method="POST">
-          <h5>Insertar query</h5>
+          <h2>Insertar query</h2>
           <div>
               <input type="text" name="centro" id ="centro" placeholder="centro">
           </div>
@@ -37,6 +53,8 @@
               <button type="submit">Submit</button>
           </div>
       </form>
+      <div></div>
+      <div></div>
       <div>
         {% if queries|length %}
         <table>
@@ -55,6 +73,8 @@
         {% endif %}
         </table>
       </div>
+      <div></div>
+      <div></div>
       {% if queries|length %}
       <a href="{{ url_for('scraper') }}">Scraper</a>
       {% endif %}

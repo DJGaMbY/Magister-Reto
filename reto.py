@@ -29,8 +29,8 @@ class Schools(db.Model):
     provincia = db.Column(db.Text(), nullable=False)
     tipo = db.Column(db.Text(), nullable=False)
     cursos = db.Column(db.Text(), nullable=False)
-    telefono = db.Column(db.Text(), nullable=False)
-    link_web = db.Column(db.Text(), nullable=False)
+    telefono = db.Column(db.Integer, nullable=False)
+    link_web = db.Column(db.Text())
 
     def __init__(self, nombre, calle, codigo_postal, municipio, provincia, tipo, cursos, telefono, link_web):
         self.nombre = nombre
@@ -64,8 +64,6 @@ class Queries(db.Model):
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
-    queries = Queries.query.all()
-
     if request.method == 'POST':
         details = request.form
         centro = details['centro']
@@ -75,7 +73,11 @@ def index():
         db.session.add(newQuery)
         db.session.commit()
 
+        queries = Queries.query.all()
+
         return render_template('index.html', queries=queries)
+
+    queries = Queries.query.all()
 
     return render_template('index.html', queries=queries)
 
@@ -113,6 +115,7 @@ def scraper():
     a = soup.find_all("div", {"class": "contenido_registro_colegio_descripcion"})
     for tag in a:
         nombre = tag.find("a", {"class": "titulo_colegios_enlace async"}).text.strip()
+        print(nombre)
         link = tag.find("a", {"class": "titulo_colegios_enlace async"})['href']
         calle = tag.find_all("p")[0].text
         cp = int(calle.split("CP ")[1])
@@ -129,12 +132,17 @@ def scraper():
                 cursos = data.text.split(": ")[1]
             if "Tipo" in data.text:
                 tipo = data.text.split(": ")[1]
-            if data.text.startswith("9"):
+            if data.text.startswith("9") and not data.text.startswith("9:") and not data.text.startswith("9h") and not "," in data.text:
                 telefono = data.text.split("- ")[0]
+                tlf_split = int(telefono.replace(" ", ""))
 
-        link_colegio = soup.find_all("a", {"class": "enlace_web"})[0]['href']
+        link_colegio = soup.find_all("a", {"class": "enlace_web"})
+        if soup.find_all("a", {"class": "enlace_web"}):
+            link_web = link_colegio[0]['href']
+        else:
+            link_web = None
 
-        colegio = Schools(nombre, calle_split, cp, municipio, provincia_split, tipo, cursos, telefono, link_colegio)
+        colegio = Schools(nombre, calle_split, cp, municipio, provincia_split, tipo, cursos, tlf_split, link_web)
         #colegio.calle = calle_split
         existente = Schools.query.filter_by(nombre=nombre, codigo_postal=cp)
         if existente.count() == 0:
@@ -146,6 +154,7 @@ def scraper():
         
     db.session.delete(current)
     db.session.commit()
+    
 
     return render_template('resultados.html', colegios=resultado)
 
