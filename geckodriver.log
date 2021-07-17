@@ -1163,8 +1163,32 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
+Exiting due to channel error.
+.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
 console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 7388, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1626454488393	Marionette	INFO	Stopped listening on port 56338
+: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+Exiting due to channel error.
+.error: services.settings: 
   main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
 console.error: services.settings: 
   main/doh-providers local data was corrupted
@@ -1189,7 +1213,32 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x390146,name=PContent::Msg_AsyncMessage) Channel error: cannot send/recv
+
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 13968, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1626454483925	Marionette	INFO	Stopped listening on port 60838
+n/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+[GFX1-]: Receive IPC clExiting due to channel error.
+gs: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
+console.error: services.settings: 
+  main/doh-config local data was corrupted
+console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+[GFX1-]: Receive Ision
 console.error: services.settings: 
   main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
 console.error: services.settings: 
@@ -1202,12 +1251,10 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
-console.error: services.settings: 
-  main/doh-providers local data was corrupted
-console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 17504, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1626454489777	Marionette	INFO	Stopped listening on port 56558
+ services.settings: main/doh-providers Signature verified failed. Retry from scratch
 console.error: services.settings: 
   main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
 console.error: services.settings: 
@@ -1215,59 +1262,8 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
-console.error: services.settings: 
-  main/doh-providers local data was corrupted
-console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
-console.error: services.settings: 
-  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
-console.error: services.settings: 
-  main/doh-config local data was corrupted
-console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
-console.log: WebExtensions: reset-default-search: starting.
-console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
-console.error: services.settings: 
-  main/doh-providers local data was corrupted
-console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
-console.error: services.settings: 
-  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
-console.error: services.settings: 
-  main/doh-config local data was corrupted
-console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
-console.log: WebExtensions: reset-default-search: starting.
-console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
-console.error: services.settings: 
-  main/doh-providers local data was corrupted
-console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
-console.error: services.settings: 
-  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
-console.error: services.settings: 
-  main/doh-config local data was corrupted
-console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
-console.log: WebExtensions: reset-default-search: starting.
-console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-nored for this session
-console.error: services.settings: 
-  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
-console.error: services.settings: 
-  main/doh-providers local data was corrupted
-console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
-console.error: services.settings: 
-  main/doh-config Signature failed  InvalidSignatureError: Invalid content signature (main/doh-config)
-console.error: services.settings: 
-  main/doh-config local data was corrupted
-console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
-console.log: WebExtensions: reset-default-search: starting.
-console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-1626450894184	geckodriver	INFO	Listening on 127.0.0.1:63976
+Exiting due to channel error.
+Listening on 127.0.0.1:63976
 1626450897214	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Javier\\AppData\\Local\\Temp\\rust_mozprofileBPrL9b"
 *** You are running in headless mode.
 1626450897435	Marionette	INFO	Marionette enabled
@@ -1287,3 +1283,9 @@ console.error: services.settings:
 console.warn: services.settings: main/doh-config Signature verified failed. Retry from scratch
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x390146,name=PContent::Msg_AsyncMessage) Channel error: cannot send/recv
+
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 6488, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1626454470189	Marionette	INFO	Stopped listening on port 63984

@@ -27,7 +27,7 @@ Para ello, será necesario ejecutar en la terminal los siguientes comandos:
 - python3 -mpip install geopy
 - python3 -mpip install requests
 
-Asimismo, es necesario instalar geckodriver para el funciomaniento del módulo Selenium. Descarga la herramienta a partir de este enlace: https://github.com/mozilla/geckodriver/releases
+Asimismo, es necesario instalar geckodriver y el navegador Firefox para el funciomaniento del módulo Selenium. Descarga la herramienta a partir de este enlace: https://github.com/mozilla/geckodriver/releases
 Una vez descargado, es lo siguiente es descomprimir el paquete y ubicarlo en un directorio. Para la detección de geckodriver, es necesario cambiar el directorio en la línea 14 de reto.py:
 
 - driver = webdriver.Firefox(firefox_options=options, executable_path = 'C:/Users/Javier/Downloads/geckodriver.exe')
